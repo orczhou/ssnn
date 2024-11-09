@@ -1,8 +1,47 @@
-# ssnn
+# super simple neural network
+
 Learning how machine learning
 
+This repository contains implementations of simple neural networks,include:
+
+* ssnn_ant.py    : a super simple neural network with only one neuron
+* ssnn_ant_np.py : a numpy version of ssnn_ant.py
+
+# About ssnn_ant.py
+
+  * only one neuron in only the one hidden layer
+  * input x is scalar (one-dimension)
+  * using logistic function as the activation function
+
+input, parameters and output:
+
 ```
-python ssnn.py
+input layer:
+    x: scalar
+
+parameters:
+    w: scalar
+    b: scalar
+
+output:
+    y \in [0,1] or  p \in {0,1}
+
+```
+
+structure:
+
+```
+   x ->   w*x + b   ->   logistic function  -> output
+        -----------      -----------------
+             |                    |
+             V                    V
+         one neuron     activation function
+```
+
+# How to run ssnn_ant.py
+
+```
+python ssnn_ant.py
 ```
 
 output like :
