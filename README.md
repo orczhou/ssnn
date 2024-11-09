@@ -6,6 +6,7 @@ This repository contains implementations of simple neural networks,include:
 
 * ssnn_ant.py    : a super simple neural network with only one neuron
 * ssnn_ant_np.py : a numpy version of ssnn_ant.py
+* ssnn_ant_tf.py : a tensorflow version of ssnn_ant.py
 
 # About ssnn_ant.py
 
