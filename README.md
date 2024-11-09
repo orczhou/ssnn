@@ -9,9 +9,10 @@ This repository contains implementations of simple neural networks,include:
 
 # About ssnn_ant.py
 
-  * only one neuron in only the one hidden layer
+  * only one neuron in only one layer
   * input x is scalar (one-dimension)
   * using logistic function as the activation function
+  * more details : [99行代码构建极简的神经网络](https://www.orczhou.com/index.php/2024/11/implement-a-super-simple-neural-network-in-99-line-codes/)
 
 input, parameters and output:
 
