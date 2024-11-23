@@ -81,6 +81,7 @@ sample: x[5]:5,y[5]:1; the prediction is 1 with probability:0.933417
   * 30 neurons for the only hidden layer, as n^{[1]} = 30
   * output layer: one neuron for classification(logistic)
   * using relu for activation function in hidden layer
+  * more details : [从零构建图片识别的神经网络](https://www.orczhou.com/index.php/2024/11/build-a-image-classification-neural-network-from-scratch/)
 
 input layer:
 ```
