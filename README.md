@@ -161,13 +161,18 @@ grad and notaion:
 ```
 
 Challenges
+
     * Understanding the MNIST dataset and labels
     * Understanding gradient caculate and the gradient descent
     * Understanding logistic regression loss function and the caculation
     * Knowing feature normalization
 
 about it:
-    it's a simple project for human learning how machine learning
-    version ant : scalar input/one neuron/one layer/binary classification
-    version bear: vector input/30+1 neurons /two layer/binary classification
-    by orczhou.com
+
+it's a simple project for human learning how machine learning
+
+version ant : scalar input/one neuron/one layer/binary classification
+
+version bear: vector input/30+1 neurons /two layer/binary classification
+
+by orczhou.com
