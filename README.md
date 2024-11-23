@@ -8,6 +8,8 @@ This repository contains implementations of simple neural networks,include:
 * ssnn_ant_np.py : a numpy version of ssnn_ant.py
 * ssnn_ant_tf.py : a tensorflow version of ssnn_ant.py
 
+* ssnn_bear.py   : a simple neural network with vector input/30+1 neurons/two layer/binary classification
+
 # About ssnn_ant.py
 
   * only one neuron in only one layer
@@ -72,3 +74,100 @@ sample: x[3]:3,y[3]:0; the prediction is 0 with probability:0.000568
 sample: x[4]:4,y[4]:0; the prediction is 0 with probability:0.081917
 sample: x[5]:5,y[5]:1; the prediction is 1 with probability:0.933417
 ```
+
+# About ssnn_bear.py
+
+  * input x is matrix 784x1 (where 784 = 28*28 which is MNIST image data)
+  * 30 neurons for the only hidden layer, as n^{[1]} = 30
+  * output layer: one neuron for classification(logistic)
+  * using relu for activation function in hidden layer
+
+input layer:
+```
+    x: (shape 784x1)
+        X: m samples where m = 12665 , X: 784 x 12665
+        as : a^{[0]}: 784 x 12665  n^{[0]} = 784
+```
+
+hidden layer:
+```
+    n^{[1]}:  30
+    W^{[1]}: (30,784)   as (n^{[1]},n^{[0]})
+    Z^{[1]}: (30,12665) as (n^{[1]},m)
+    A^{[1]}: (30,12665) as (n^{[1]},m)
+```
+
+output layer:
+```
+    n^{[2]}: 1
+    W^{[2]}: (1,30)     as (n^{[2]},n^{[1]})
+    Z^{[2]}: (1,12665)  as (n^{[2]},m)
+    A^{[2]}: (1,12665)  as (n^{[2]},m)
+```
+
+output:
+```
+    y \in [0,1] or  p \in {0,1}
+        Y: (1 x m) ndarray
+```
+
+structure for only one/m sample(s):
+```
+      x_1   ->   W*X + B   ->  relu  ->
+      x_2   ->   W*X + B   ->  relu  ->  \
+      ...   ->     ...     ->     .. ->  -> w*x+b -> logistic
+      x_784 ->   W*X + B   ->  relu  ->  /
+     ------     --------------------       ------------------
+       |                |                          |
+       V                V                          V
+     input         30 neurons                 one neuron
+    feature      relu activation             output layer
+
+  By numpy with m samples:
+    np.logistic(W2@g(W1@X+b1)+b2) as \hat{Y}: (1 x m) ndarray
+
+    dimension analysis:
+        W2        : (n2,n1)
+        g(W1@X+b1): (n1,m)
+            W1 : (n1,n0)
+            X  : (n0,m)
+            b1 : (n1,1)  with broadcasting to (n1,m)
+        b2: (n2,1) with broadcasting to (n2,m)
+```
+
+grad and notaion:
+```
+    forward propagation : A1 A2 Z1 Z2
+    backward propagation: dW1 dW2 db1 db2
+
+    more details:
+        Z1 = W1@X  + b1
+        Z2 = W2@A1 + b2
+        A1 = g(Z1)      -- g     for relu
+        A2 = \sigma(Z2) -- sigma for logistic
+
+        dW2 = ((1/m)*(A2-Y))@A1.T
+            dW2 = dZ2@A1.T  where dZ2 = (1/m)*(A2-Y)
+            A2.shape:(1,m) Y.shape:(1,m) A1.T.shape:(n1,m)
+            so: dW2.shape: (1,n1)
+
+        dW1 = (W2.T@((1/m)*(A2-Y))*g_prime(Z1))@A0.T
+            dW1 = dZ1@A1.T
+                where
+                    dZ1 = W2.T@dZ2 * g_prime(Z1)
+                    g_prime is derivative of relu
+                dW2.shape: (n1,n0)
+        note: @ for matrix multiply;   * for dot product/element-wise
+```
+
+Challenges
+    * Understanding the MNIST dataset and labels
+    * Understanding gradient caculate and the gradient descent
+    * Understanding logistic regression loss function and the caculation
+    * Knowing feature normalization
+
+about it:
+    it's a simple project for human learning how machine learning
+    version ant : scalar input/one neuron/one layer/binary classification
+    version bear: vector input/30+1 neurons /two layer/binary classification
+    by orczhou.com
