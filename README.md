@@ -168,7 +168,32 @@ Challenges
     * Understanding logistic regression loss function and the caculation
     * Knowing feature normalization
 
-about it:
+# About ssnn_cat.py
+
+super simple neural networks (cat version using mini-batch/sgd)
+
+  * Using mini-batch / stochastic gradient descent
+  * input x is matrix 784x1 (where 784 = 28*28 which is MNIST image data)
+  * 30 neurons for the only hidden layer, as n^{[1]} = 30
+  * output layer: one neuron for classification(logistic)
+  * using relu for activation function in hidden layer
+
+mini-batch / stochastic gradient descent(batch size = 1)
+
+for example:
+```
+   m = 7 , batch_size = 3
+   so:
+      batch_iteration = 7/3 = 3
+      i_batch in 0,1,2
+      in every bath_iteration
+          take sample from
+              i_batch*batch_size
+          to
+              min((i_batch+1)*batch_size,m)
+```
+
+# about it
 
 it's a simple project for human learning how machine learning
 
